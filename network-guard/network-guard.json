@@ -1,0 +1,28 @@
+{
+  "$comment": "Network guard for the tool pages: network-guard.mjs, run before every deployment of the site. Pages = the tools of registry.json. inputs: per page, the value of a field that the bare marker cannot make work ({CANARY} = the marker; a color, a cron expression or a timestamp cannot carry it: a leak is then caught by the rule \"no request triggered by the interaction\"). @expect = element whose text must show the marker during the exercise, proof that the success path ran. @file = content of the text file given to input type=file. Rules and exit codes: at the top of network-guard.mjs. Published at https://praticulus.com/network-test/",
+  "pages": "registry",
+  "inputs": {
+    "/json-formatter/": { "#input": "{\"note\":\"{CANARY}\",\"n\":1}", "@expect": "#output", "@file": "{\"note\":\"{CANARY}\"}" },
+    "/yaml-formatter/": { "#input": "note: {CANARY}\nn: 1\n", "@expect": "#output", "@file": "note: {CANARY}\n" },
+    "/xml-formatter/": { "#input": "<note><text>{CANARY}</text></note>", "@expect": "#output", "@file": "<note>{CANARY}</note>" },
+    "/csv-viewer/": { "#input": "name,n\n{CANARY},1\n", "@expect": "#table", "@file": "name,n\n{CANARY},1\n" },
+    "/sql-formatter/": { "#input": "select note from t where note = '{CANARY}'", "@expect": "#output" },
+    "/regex-tester/": { "#pattern": "[A-Z]+", "#testString": "{CANARY}", "@expect": "#matches" },
+    "/jwt-decoder/": { "#jwt-input": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJRWk5FVEdVQVJEQ0FOQVJZIiwibmFtZSI6Im5ldHdvcmstZ3VhcmQiLCJpYXQiOjE3MDAwMDAwMDB9.c2lnbmF0dXJl", "@expect": "#jwt-payload" },
+    "/cert-decoder/": {
+      "#cert-input": "-----BEGIN CERTIFICATE-----\nMIIBizCCATGgAwIBAgIUMg+BWmsiGk6Mgbzg3U5jWQG4gyMwCgYIKoZIzj0EAwIw\nGzEZMBcGA1UEAwwQUVpORVRHVUFSRENBTkFSWTAeFw0yNjEwMjgyMTM3MTdaFw0z\nNjEwMjUyMTM3MTdaMBsxGTAXBgNVBAMMEFFaTkVUR1VBUkRDQU5BUlkwWTATBgcq\nhkjOPQIBBggqhkjOPQMBBwNCAAS1AKlqq3nIwrs/jbteTJjSgidfq0zMvsOCrCR0\nL7DDM8zrn19ZlXJpDdlEK4sAdDk317WLufKY7uATNsAwq0nPo1MwUTAdBgNVHQ4E\nFgQUt24j28fCh/znYO/qRmjihMsz204wHwYDVR0jBBgwFoAUt24j28fCh/znYO/q\nRmjihMsz204wDwYDVR0TAQH/BAUwAwEB/zAKBggqhkjOPQQDAgNIADBFAiA0lztw\nYv7POrvVaVNkifNCdyBcMIieTTTaM7NUwIRIMwIhAKQlps9Od6gHVoTBQT7iMJYU\nvqCZEiX3t8G/ekbGASGC\n-----END CERTIFICATE-----\n",
+      "@expect": "#cert-subject"
+    },
+    "/color-converter/": { "#conv-input": "#13579b" },
+    "/color-picker/": { "#hex-input": "#13579b", "#fg-color": "#13579b", "#bg-color": "#fdfdfd" },
+    "/color-blender/": { "#blend-color1-text": "#13579b", "#blend-color2-text": "#2468ac" },
+    "/palette-generator/": { "#base-color-text": "#13579b" },
+    "/gradient-generator/": { "#grad-angle": "45" },
+    "/contrast-checker/": { "#fg-hex": "#13579b", "#bg-hex": "#fdfdfd" },
+    "/timestamp-converter/": { "#input": "1700000000" },
+    "/cron-parser/": { "#input": "*/5 * * * *" },
+    "/url-encoder/": { "@expect": "#output" },
+    "/markdown-preview/": { "@expect": "#preview" },
+    "/text-case/": { "@expect": "#results" }
+  }
+}

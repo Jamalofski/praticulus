@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nothing Leaves Your Browser: the Network Test, Reproducible | Praticulus</title>
+  <meta name="description" content="Before every deployment, each of the 31 Praticulus tools is loaded in Chromium, filled with a marker and clicked through. Here is exactly what the test checks, what it does not, and how to rerun it yourself.">
+  <link rel="canonical" href="https://praticulus.com/network-test/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Nothing leaves your browser: the Network test, reproducible">
+  <meta property="og:description" content="Each of the 31 Praticulus tools is exercised in Chromium before every deployment. What the test checks, what it does not, and how to rerun it yourself.">
+  <meta property="og:url" content="https://praticulus.com/network-test/">
+  <meta property="og:site_name" content="Praticulus">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://praticulus.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://praticulus.com/og-image.png">
+  <link rel="stylesheet" href="/css/style.css?v=20260923a">
+  <script src="/error-reporter.js?v=20260824a"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Nothing leaves your browser: the Network test, reproducible",
+    "url": "https://praticulus.com/network-test/",
+    "description": "Before every deployment, each of the 31 Praticulus tools is loaded in Chromium, filled with a marker and clicked through. Here is exactly what the test checks, what it does not, and how to rerun it yourself.",
+    "dateModified": "2026-11-04",
+    "publisher": { "@type": "Organization", "name": "Iris Digital", "url": "https://irisdigital.tech/" }
+  }
+  </script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <header class="header">
+    <div class="container-wide header-inner">
+      <a href="/" class="logo" aria-label="Praticulus — home">
+        <span class="logo-tile" aria-hidden="true"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M13 2 4 13.5h5.4L9 22l9-12.5h-5.4L13 2z"/></svg></span>
+        <span class="logo-word">Pratic<span>ulus</span></span>
+      </a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="/color/">Color</a>
+        <a href="/converters/">Converters</a>
+        <a href="/developer/">Developer</a>
+        <a href="/generators/">Generators</a>
+        <a href="/security/">Security</a>
+        <a href="/text/">Text</a>
+      </nav>
+      <span class="nav-pill">31 tools</span>
+    </div>
+  </header>
+
+  <main class="container" id="main">
+    <div class="tool-header">
+      <h1>Nothing leaves your browser: the Network test</h1>
+      <p>What we check before every deployment, what that check does not cover, and how to run it yourself.</p>
+    </div>
+    <div class="tool-body legal-content">
+      <h2>The claim, stated precisely</h2>
+      <p>On the 31 tool pages of Praticulus, what you type, paste or upload is not sent anywhere. After the page has loaded, using a tool triggers no request, except for two kinds that carry nothing you entered: a library file the tool fetches from <code>praticulus.com</code> the first time you use it, and the tab icon your browser fetches again when a tool writes its state into the address bar.</p>
+      <p>We do not claim &ldquo;zero requests&rdquo;. Loading a page fetches its own HTML, CSS, JavaScript, fonts and icons, all from <code>praticulus.com</code>. Every load also appears in our web server&rsquo;s access log (IP address, user-agent, URL), like on any website.</p>
+
+      <h2>What the automated test does</h2>
+      <p>Before every deployment of praticulus.com, our deploy script runs <code>network-guard.mjs</code> on the files about to go live. For each of the 31 tool pages, it:</p>
+      <ul>
+        <li>serves the page from a local server and opens it in headless Chromium, in a fresh browser context with no extension;</li>
+        <li>fills every visible text field with a marker, <code>QZNETGUARDCANARY</code>. A field that needs a valid format gets a valid value, with the marker inside wherever the format allows it: a JSON or YAML document, a JWT payload, the subject of a certificate. A color, cron expression or timestamp cannot carry it, so it gets a plain valid value;</li>
+        <li>gives every file input a file that contains the marker (a 1&times;1 PNG with the marker in a text chunk, or a text file);</li>
+        <li>picks the last option of every dropdown, then clicks every visible button, checkbox and radio in the page body (up to 60), filling the fields again before each click;</li>
+        <li>waits one more second for anything delayed by a timer, then reloads the page, to catch data kept in storage and sent on the next visit;</li>
+        <li>on eleven tools, also checks that the marker appeared in the tool&rsquo;s output, as proof that the tool actually ran rather than just showing an error.</li>
+      </ul>
+      <p>Every request made by the page, its workers included, is recorded. Anything addressed to another host than the local server is intercepted and answered with an empty response: nothing leaves the test machine.</p>
+
+      <h2>The four rules</h2>
+      <ul>
+        <li><strong>No request carries the marker</strong>, in its URL or its body, raw, URL-encoded or base64-encoded.</li>
+        <li><strong>No request goes to another origin</strong> than the site itself, at any moment, during load included.</li>
+        <li><strong>No request is triggered by using the tool</strong>, except fetching a file of the site that exists, of type script, stylesheet, font or image, with no query parameter other than a <code>?v=</code> cache key, and the tab icon. A <code>fetch</code>, an XHR, a beacon, a WebSocket or a navigation after load is always a failure.</li>
+        <li><strong>No request other than GET</strong>, at any moment.</li>
+      </ul>
+      <p>If one page breaks one rule, the deployment of the site is cancelled and praticulus.com stays on its previous version. If the test cannot run at all (browser missing, page that does not load, tool that could not be exercised), the deployment goes ahead and we are alerted: a page that was not exercised is reported as unchecked, never as compliant.</p>
+
+      <h2>Latest result</h2>
+      <p>Run on November 4, 2026, in Chrome 156: <strong>31 of 31 pages compliant, 0 violations, 0 unchecked</strong>. Each page made 10 to 19 requests while loading, all to the site itself. After interaction:</p>
+      <ul>
+        <li>24 pages made no request at all;</li>
+        <li>5 pages (<a href="/diff-checker/">Diff Checker</a>, <a href="/timestamp-converter/">Timestamp Converter</a>, <a href="/sql-formatter/">SQL Formatter</a>, <a href="/hash-generator/">Hash Generator</a>, <a href="/hmac-generator/">HMAC Generator</a>) made the browser fetch <code>/favicon.svg</code> again, after the tool wrote a share link or a setting into the URL. Both live in the URL fragment (after the <code>#</code>), which browsers do not send to the server;</li>
+        <li>2 pages (<a href="/sql-formatter/">SQL Formatter</a>, <a href="/yaml-formatter/">YAML Formatter</a>) fetched their formatting library from <code>/js/vendor/</code> on first use.</li>
+      </ul>
+      <p>The test has been part of every deployment since October 28, 2026.</p>
+
+      <h2>What the test does not cover</h2>
+      <ul>
+        <li><strong>Only the 31 tool pages.</strong> The home page, its search box included, the category pages and pages like this one are not part of the test.</li>
+        <li><strong>Only Chromium.</strong> Firefox and Safari run the same code but are not tested automatically.</li>
+        <li><strong>The files, not the live server.</strong> The test runs on the files about to be uploaded, served locally. It says nothing about the HTTP headers praticulus.com sends, such as its Content-Security-Policy.</li>
+        <li><strong>One pass, not every combination.</strong> Each button is clicked and the last option of each dropdown is picked, but not every sequence of options a person could choose.</li>
+        <li><strong>What could be hidden in which file is fetched.</strong> The third rule lets a tool fetch an existing file of the site after load. The test does not judge which file is chosen, so data encoded in that choice would not be caught.</li>
+        <li><strong>Your browser extensions.</strong> The test runs without any. An extension can read and send what a page shows; no website can prevent that.</li>
+        <li><strong>The error reporter.</strong> Every page loads <a href="https://github.com/jamalofski/praticulus/blob/main/error-reporter.js" target="_blank" rel="noopener"><code>error-reporter.js</code></a>, which sends a beacon to <code>dash.irisdigital.tech</code>, our own server, when the page hits a JavaScript error it did not handle. The beacon contains the error message, an excerpt of the stack trace, the hostname and the page path. In the test, it counts as a failure (another origin); it did not fire on any of the 31 pages. It is still there for real errors, on your machine.</li>
+        <li><strong>Local storage.</strong> The two Markdown tools save your draft in your browser&rsquo;s local storage so you do not lose it. The reload step checks that it is not sent; it stays on your device.</li>
+        <li><strong>That the test really ran.</strong> It runs on our deployment server, where you cannot watch it. That is why the method below exists.</li>
+      </ul>
+
+      <h2 id="by-hand">Check it yourself, by hand</h2>
+      <p>About two minutes per tool, in any browser with developer tools.</p>
+      <ul>
+        <li><strong>1. A clean window.</strong> Open a private window, where extensions are off by default, or a fresh browser profile.</li>
+        <li><strong>2. Open the Network panel first.</strong> Go to a tool, for example the <a href="/json-formatter/">JSON Formatter</a>. Open DevTools (F12, or Cmd+Opt+I on macOS), select the Network tab and tick <em>Preserve log</em> (<em>Persist Logs</em> in Firefox). Reload the page.</li>
+        <li><strong>3. Read the load.</strong> Right-click a column header and show the <em>Domain</em> column. Every row should read <code>praticulus.com</code>.</li>
+        <li><strong>4. Clear, then use the tool.</strong> Clear the list with the panel&rsquo;s Clear button. Paste something you would recognize, such as a made-up token <code>MY-SECRET-1234</code>, and use every button of the tool.</li>
+        <li><strong>5. Read what happened.</strong> The list should stay empty, or show only <code>favicon.svg</code> or a <code>.js</code> file from <code>praticulus.com</code>, fetched with GET. Click any row that appeared and read its URL and headers: your token is not there, and a GET has no body to carry it.</li>
+        <li><strong>6. Reload once more</strong>, with the log preserved, and check that the new requests do not contain your token either.</li>
+      </ul>
+
+      <h2 id="automated">Rerun the automated test</h2>
+      <p>The test script and its configuration are published with the site, in <a href="https://github.com/jamalofski/praticulus/tree/main/network-guard" target="_blank" rel="noopener"><code>network-guard/</code></a> of the public repository. With Node.js 18 or later and Google Chrome installed:</p>
+      <div class="result-box mb-1">git clone https://github.com/jamalofski/praticulus.git</div>
+      <div class="result-box mb-1">cd praticulus</div>
+      <div class="result-box mb-1">npm install --no-save playwright-core</div>
+      <div class="result-box mb-2">NETWORK_GUARD_CHANNEL=chrome node network-guard/network-guard.mjs . --config network-guard/network-guard.json</div>
+      <p>On Windows, in PowerShell, set the variable first with <code>$env:NETWORK_GUARD_CHANNEL="chrome"</code>; <code>msedge</code> works too. The script prints one line per page, in French, and ends with <code>31/31 conformes, 0 en violation, 0 inexploitable(s)</code> (31 of 31 compliant, 0 violations, 0 unchecked). It exits with 0 when every page complies, 1 on a violation, 2 when a page could not be checked. The rules are written at the top of the script, and they are the ones on this page.</p>
+
+      <h2>Related</h2>
+      <p>The <a href="/privacy/">privacy policy</a> covers cookies, server logs and fonts. The full source of the site is at <a href="https://github.com/jamalofski/praticulus" target="_blank" rel="noopener">github.com/jamalofski/praticulus</a>, under the MIT license. Found a request this page does not account for? Write to <a href="mailto:contact@praticulus.com">contact@praticulus.com</a>.</p>
+
+      <p class="legal-updated"><em>Last updated: November 4, 2026</em></p>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container-wide">
+      <p>&copy; 2026 <a href="https://irisdigital.tech/" target="_blank" rel="noopener">Iris Digital</a> &mdash; <a href="/legal/">Legal Notice</a> &middot; <a href="/privacy/">Privacy Policy</a> &middot; <a href="/about/">About</a> &middot; <a href="https://github.com/jamalofski/praticulus" target="_blank" rel="noopener">GitHub</a></p>
+      <p class="footer-meta">No tracking &middot; No ads on tool pages &middot; <a href="/privacy/">Affiliate disclosure</a></p>
+    </div>
+  </footer>
+</body>
+</html>

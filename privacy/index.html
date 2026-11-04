@@ -73,6 +73,7 @@
         <li><strong>Application &rarr; Local Storage / Session Storage</strong> — empty, except on the two Markdown tools, which autosave your draft there so you don't lose it. That data never leaves your device.</li>
         <li><strong>Console</strong> — no third-party scripts, no fingerprinting libraries.</li>
       </ul>
+      <p>The tool pages are also checked automatically before every deployment. What that test covers, what it does not, and how to rerun it: <a href="/network-test/">the Network test</a>.</p>
 
       <h2>Zero third-party origins</h2>
       <p>Every script, stylesheet, font, and image loaded by Praticulus is served from <code>praticulus.com</code>. No CDN, no Google Fonts, no analytics pixels. The <code>marked</code>, <code>DOMPurify</code>, and <code>Prism</code> libraries used by <a href="/markdown-preview/">Markdown Preview</a> are bundled with the site.</p>

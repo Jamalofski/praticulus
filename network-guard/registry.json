@@ -1,0 +1,839 @@
+{
+  "$comment": "Single source of the internal links of praticulus.com. Order of \"tools\" = popularity ranking (master list). title/hubTitle/desc = plain text (escaped when rendered); hubDesc = HTML fragment. Its tools are the pages checked by network-guard.mjs.",
+  "site": "https://praticulus.com",
+  "iconVersion": "20260824a",
+  "related": {
+    "cards": 5,
+    "cap": 6,
+    "floor": 4
+  },
+  "hubs": [
+    {
+      "slug": "developer",
+      "url": "/developer/",
+      "label": "Developer",
+      "icon": "code",
+      "h1": "Developer Tools",
+      "ldName": "Developer Tools"
+    },
+    {
+      "slug": "security",
+      "url": "/security/",
+      "label": "Security",
+      "icon": "shield",
+      "h1": "Security Tools",
+      "ldName": "Security Tools"
+    },
+    {
+      "slug": "color",
+      "url": "/color/",
+      "label": "Color",
+      "icon": "droplet",
+      "h1": "Color Tools",
+      "ldName": "Color Tools"
+    },
+    {
+      "slug": "converters",
+      "url": "/converters/",
+      "label": "Converters",
+      "icon": "swap",
+      "h1": "Converter Tools",
+      "ldName": "Converter Tools"
+    },
+    {
+      "slug": "generators",
+      "url": "/generators/",
+      "label": "Generators",
+      "icon": "spark",
+      "h1": "Generator Tools",
+      "ldName": "Generator Tools"
+    },
+    {
+      "slug": "text",
+      "url": "/text/",
+      "label": "Text",
+      "icon": "type",
+      "h1": "Text Tools",
+      "ldName": "Text Tools"
+    }
+  ],
+  "tools": [
+    {
+      "url": "/qr-generator/",
+      "type": "tool",
+      "title": "QR Code Generator",
+      "icon": "qr",
+      "desc": "Make QR codes for URLs, Wi-Fi, and vCards. Export PNG or SVG, nothing uploaded.",
+      "hubs": [
+        "generators"
+      ],
+      "hubTitle": {
+        "generators": "QR Code Generator"
+      },
+      "hubDesc": {
+        "generators": "QR codes for links, Wi-Fi, contacts, messaging, geo and calendar events. Add a logo, pick colors and module style, export PNG or SVG."
+      },
+      "tags": [
+        "generate",
+        "image",
+        "encode",
+        "share"
+      ],
+      "pin": [],
+      "block": []
+    },
+    {
+      "url": "/image-compressor/",
+      "type": "tool",
+      "title": "Image Compressor",
+      "icon": "image",
+      "desc": "Compress JPEG, PNG and WebP with a quality slider. Batch, before/after, zero upload.",
+      "hubs": [
+        "converters"
+      ],
+      "hubTitle": {
+        "converters": "Image Compressor"
+      },
+      "hubDesc": {
+        "converters": "Compress JPEG, PNG and WebP with a quality slider. Batch, before/after preview, zero upload."
+      },
+      "tags": [
+        "image",
+        "optimize",
+        "file"
+      ],
+      "pin": [],
+      "block": []
+    },
+    {
+      "url": "/cron-parser/",
+      "type": "tool",
+      "title": "Cron Expression Parser",
+      "icon": "timer",
+      "desc": "Explain any cron expression in plain English and preview the next 5 run times.",
+      "hubs": [
+        "developer"
+      ],
+      "hubTitle": {
+        "developer": "Cron Expression Parser"
+      },
+      "hubDesc": {
+        "developer": "Explain any cron expression in plain English and preview the next 5 run times. Inline cheatsheet."
+      },
+      "tags": [
+        "schedule",
+        "devops",
+        "parse",
+        "time"
+      ],
+      "pin": [],
+      "block": []
+    },
+    {
+      "url": "/lorem-ipsum/",
+      "type": "tool",
+      "title": "Lorem Ipsum Generator",
+      "icon": "paragraph",
+      "desc": "Generate placeholder text in paragraphs, sentences, or words.",
+      "hubs": [
+        "generators",
+        "text"
+      ],
+      "hubTitle": {
+        "generators": "Lorem Ipsum Generator",
+        "text": "Lorem Ipsum Generator"
+      },
+      "hubDesc": {
+        "generators": "Generate placeholder text in paragraphs, sentences, or words.",
+        "text": "Generate placeholder text in paragraphs, sentences, or words."
+      },
+      "tags": [
+        "generate",
+        "text",
+        "placeholder"
+      ],
+      "pin": [],
+      "block": []
+    },
+    {
+      "url": "/timestamp-converter/",
+      "type": "tool",
+      "title": "Unix Timestamp Converter",
+      "icon": "clock",
+      "desc": "Convert Unix epoch to date and back. Seconds or milliseconds, ISO 8601, UTC and any timezone.",
+      "hubs": [
+        "converters",
+        "developer"
+      ],
+      "hubTitle": {
+        "converters": "Unix Timestamp Converter",
+        "developer": "Unix Timestamp Converter"
+      },
+      "hubDesc": {
+        "converters": "Convert epoch ↔ date, seconds or milliseconds, ISO 8601, UTC and any timezone. Batch convert.",
+        "developer": "Convert epoch ↔ date, seconds or milliseconds, ISO 8601, UTC and any timezone. Batch convert."
+      },
+      "tags": [
+        "time",
+        "convert",
+        "epoch"
+      ],
+      "pin": [],
+      "block": []
+    },
+    {
+      "url": "/markdown-to-html/",
+      "type": "tool",
+      "title": "Markdown to HTML Converter",
+      "icon": "markdown",
+      "desc": "Convert Markdown (GFM) to clean HTML, with optional Tailwind classes and live preview.",
+      "hubs": [
+        "text",
+        "converters"
+      ],
+      "hubTitle": {
+        "text": "Markdown to HTML",
+        "converters": "Markdown to HTML"
+      },
+      "hubDesc": {
+        "text": "Convert Markdown (GFM) to clean HTML, with optional Tailwind classes.",
+        "converters": "Convert Markdown (GFM) to clean HTML. Live preview, optional Tailwind classes, nothing uploaded."
+      },
+      "tags": [
+        "markdown",
+        "convert",
+        "html",
+        "text"
+      ],
+      "pin": [],
+      "block": []
+    },
+    {
+      "url": "/csv-viewer/",
+      "type": "tool",
+      "title": "CSV Viewer & Formatter",
+      "icon": "table",
+      "desc": "View CSV as a sortable table, auto-detect the delimiter, export to JSON or TSV.",
+      "hubs": [
+        "developer",
+        "converters"
+      ],
+      "hubTitle": {
+        "developer": "CSV Viewer & Formatter",
+        "converters": "CSV Viewer & Formatter"
+      },
+      "hubDesc": {
+        "developer": "View CSV as a sortable table, auto-detect the delimiter, export to JSON or TSV. Nothing uploaded.",
+        "converters": "Open CSV as a sortable table, auto-detect the delimiter, export to JSON or TSV."
+      },
+      "tags": [
+        "data",
+        "table",
+        "convert",
+        "csv"
+      ],
+      "pin": [],
+      "block": []
+    },
+    {
+      "url": "/json-formatter/",
+      "type": "tool",
+      "title": "JSON Formatter & Validator",
+      "icon": "braces",
+      "desc": "Format, validate, and minify JSON with syntax highlighting and a tree view.",
+      "hubs": [
+        "developer"
+      ],
+      "hubTitle": {
+        "developer": "JSON Formatter & Validator"
+      },
+      "hubDesc": {
+        "developer": "Format, validate, and minify JSON with syntax highlighting and tree view."
+      },
+      "tags": [
+        "data",
+        "format",
+        "validate",
+        "json"
+      ],
+      "pin": [],
+      "block": []
+    },
+    {
+      "url": "/color-picker/",
+      "type": "tool",
+      "title": "Color Picker",
+      "icon": "eyedropper",
+      "desc": "Pick any color visually or enter HEX, RGB, HSL. Copy color codes instantly.",
+      "hubs": [
+        "color"
+      ],
+      "hubTitle": {
+        "color": "Color Picker"
+      },
+      "hubDesc": {
+        "color": "Pick any color visually or enter HEX, RGB, HSL. Copy color codes instantly."
+      },
+      "tags": [
+        "color",
+        "pick"
+      ],
+      "pin": [],
+      "block": []
+    },
+    {
+      "url": "/word-counter/",
+      "type": "tool",
+      "title": "Word Counter",
+      "icon": "hash",
+      "desc": "Count words, characters, sentences, paragraphs and reading time as you type.",
+      "hubs": [
+        "text"
+      ],
+      "hubTitle": {
+        "text": "Word Counter"
+      },
+      "hubDesc": {
+        "text": "Count words, characters, sentences and reading time as you type."
+      },
+      "tags": [
+        "text",
+        "count",
+        "writing"
+      ],
+      "pin": [],
+      "block": []
+    },
+    {
+      "url": "/password-generator/",
+      "type": "tool",
+      "title": "Password Generator",
+      "icon": "lock",
+      "desc": "Generate strong, random passwords with customizable length and character sets.",
+      "hubs": [
+        "security",
+        "generators"
+      ],
+      "hubTitle": {
+        "security": "Password Generator",
+        "generators": "Password Generator"
+      },
+      "hubDesc": {
+        "security": "Generate strong, random passwords with customizable length and character sets.",
+        "generators": "Generate strong, random passwords with customizable length and character sets."
+      },
+      "tags": [
+        "security",
+        "generate",
+        "random"
+      ],
+      "pin": [],
+      "block": []
+    },
+    {
+      "url": "/markdown-preview/",
+      "type": "tool",
+      "title": "Markdown Preview",
+      "icon": "markdown",
+      "desc": "Write and preview Markdown in real time. Side-by-side editor with live rendering.",
+      "hubs": [
+        "text",
+        "developer"
+      ],
+      "hubTitle": {
+        "text": "Markdown Preview",
+        "developer": "Markdown Preview"
+      },
+      "hubDesc": {
+        "text": "Write and preview Markdown in real-time. Side-by-side editor with live rendering.",
+        "developer": "Write and preview Markdown in real-time. Side-by-side editor with live rendering."
+      },
+      "tags": [
+        "markdown",
+        "text",
+        "preview"
+      ],
+      "pin": [],
+      "block": []
+    },
+    {
+      "url": "/diff-checker/",
+      "type": "tool",
+      "title": "Diff Checker",
+      "icon": "diff",
+      "desc": "Compare two texts side by side or inline, with word-level highlighting.",
+      "hubs": [
+        "developer",
+        "text"
+      ],
+      "hubTitle": {
+        "developer": "Diff Checker",
+        "text": "Diff Checker"
+      },
+      "hubDesc": {
+        "developer": "Compare two texts side by side or inline, with word-level highlighting.",
+        "text": "Compare two texts side by side or inline, with word-level highlighting."
+      },
+      "tags": [
+        "compare",
+        "text",
+        "code"
+      ],
+      "pin": [],
+      "block": []
+    },
+    {
+      "url": "/color-converter/",
+      "type": "tool",
+      "title": "Color Converter",
+      "icon": "swatch",
+      "desc": "Convert colors between HEX, RGB, HSL, and CMYK with live preview.",
+      "hubs": [
+        "color"
+      ],
+      "hubTitle": {
+        "color": "Color Converter"
+      },
+      "hubDesc": {
+        "color": "Convert colors between HEX, RGB, HSL, HWB and CMYK with live preview."
+      },
+      "tags": [
+        "color",
+        "convert"
+      ],
+      "pin": [],
+      "block": []
+    },
+    {
+      "url": "/xml-formatter/",
+      "type": "tool",
+      "title": "XML Formatter",
+      "icon": "code",
+      "desc": "Format, minify and validate XML in your browser. Mixed content safe.",
+      "hubs": [
+        "developer",
+        "text"
+      ],
+      "hubTitle": {
+        "developer": "XML Formatter",
+        "text": "XML Formatter"
+      },
+      "hubDesc": {
+        "developer": "Format, minify and validate XML with the browser's native parser. Mixed content safe.",
+        "text": "Format, minify and validate XML with a privacy-first browser parser."
+      },
+      "tags": [
+        "format",
+        "validate",
+        "xml",
+        "data"
+      ],
+      "pin": [],
+      "block": []
+    },
+    {
+      "url": "/color-blender/",
+      "type": "tool",
+      "title": "Color Blender",
+      "icon": "blend",
+      "desc": "Blend two colors with adjustable midpoints. Create smooth tonal transitions.",
+      "hubs": [
+        "color"
+      ],
+      "hubTitle": {
+        "color": "Color Blender"
+      },
+      "hubDesc": {
+        "color": "Blend two colors and generate intermediate stops. Great for hover states and gradients."
+      },
+      "tags": [
+        "color",
+        "mix"
+      ],
+      "pin": [],
+      "block": []
+    },
+    {
+      "url": "/sql-formatter/",
+      "type": "tool",
+      "title": "SQL Formatter",
+      "icon": "database",
+      "desc": "Beautify or minify SQL with dialect and indentation options.",
+      "hubs": [
+        "developer"
+      ],
+      "hubTitle": {
+        "developer": "SQL Formatter"
+      },
+      "hubDesc": {
+        "developer": "Beautify or minify SQL with dialect, indentation and keyword-case options."
+      },
+      "tags": [
+        "format",
+        "code",
+        "data",
+        "sql"
+      ],
+      "pin": [],
+      "block": []
+    },
+    {
+      "url": "/text-case/",
+      "type": "tool",
+      "title": "Text Case Converter",
+      "icon": "type",
+      "desc": "Convert text between camelCase, snake_case, kebab-case, UPPER, Title Case and more.",
+      "hubs": [
+        "text"
+      ],
+      "hubTitle": {
+        "text": "Text Case Converter"
+      },
+      "hubDesc": {
+        "text": "Convert between camelCase, snake_case, kebab-case, UPPER and more."
+      },
+      "tags": [
+        "text",
+        "convert",
+        "case"
+      ],
+      "pin": [],
+      "block": []
+    },
+    {
+      "url": "/hash-generator/",
+      "type": "tool",
+      "title": "Hash Generator",
+      "icon": "hash",
+      "desc": "Generate MD5, SHA-1, SHA-256, SHA-384, and SHA-512 hashes from any text.",
+      "hubs": [
+        "security",
+        "developer"
+      ],
+      "hubTitle": {
+        "security": "Hash Generator",
+        "developer": "Hash Generator"
+      },
+      "hubDesc": {
+        "security": "Generate MD5, SHA-1, SHA-256, SHA-384, SHA-512 hashes from text or files. Hex or Base64 (SRI ready).",
+        "developer": "Generate MD5, SHA-1, SHA-256, SHA-384, SHA-512 hashes from any text or file. Hex or Base64 (SRI ready)."
+      },
+      "tags": [
+        "crypto",
+        "hash",
+        "security"
+      ],
+      "pin": [],
+      "block": []
+    },
+    {
+      "url": "/palette-generator/",
+      "type": "tool",
+      "title": "Palette Generator",
+      "icon": "palette",
+      "desc": "Generate harmonious palettes: complementary, triadic, analogous, and more.",
+      "hubs": [
+        "color"
+      ],
+      "hubTitle": {
+        "color": "Palette Generator"
+      },
+      "hubDesc": {
+        "color": "Generate harmonious palettes. Export to CSS variables, Tailwind config or SCSS."
+      },
+      "tags": [
+        "color",
+        "generate"
+      ],
+      "pin": [],
+      "block": []
+    },
+    {
+      "url": "/uuid-generator/",
+      "type": "tool",
+      "title": "UUID Generator",
+      "icon": "fingerprint",
+      "desc": "Generate UUID v4 instantly. Bulk generate and copy with one click.",
+      "hubs": [
+        "generators",
+        "developer"
+      ],
+      "hubTitle": {
+        "generators": "UUID Generator",
+        "developer": "UUID Generator"
+      },
+      "hubDesc": {
+        "generators": "Generate UUID v4 and v7 instantly. Bulk generate, copy with one click.",
+        "developer": "Generate UUID v4 instantly. Bulk generate, copy with one click."
+      },
+      "tags": [
+        "generate",
+        "random",
+        "id"
+      ],
+      "pin": [],
+      "block": []
+    },
+    {
+      "url": "/regex-tester/",
+      "type": "tool",
+      "title": "Regex Tester",
+      "icon": "regex",
+      "desc": "Test regular expressions with real-time matching, highlighting, and match details.",
+      "hubs": [
+        "text",
+        "developer"
+      ],
+      "hubTitle": {
+        "text": "Regex Tester",
+        "developer": "Regex Tester"
+      },
+      "hubDesc": {
+        "text": "Test regular expressions with real-time matching, highlighting, and match details.",
+        "developer": "Test regular expressions with live matching, pattern explainer (token-by-token), and replace."
+      },
+      "tags": [
+        "regex",
+        "text",
+        "debug"
+      ],
+      "pin": [],
+      "block": []
+    },
+    {
+      "url": "/gradient-generator/",
+      "type": "tool",
+      "title": "CSS Gradient Generator",
+      "icon": "gradient",
+      "desc": "Build linear, radial, or conic CSS gradients visually. Copy the CSS in one click.",
+      "hubs": [
+        "color"
+      ],
+      "hubTitle": {
+        "color": "CSS Gradient Generator"
+      },
+      "hubDesc": {
+        "color": "Build linear, radial, or conic CSS gradients visually. Copy the CSS in one click."
+      },
+      "tags": [
+        "color",
+        "css",
+        "generate"
+      ],
+      "pin": [],
+      "block": []
+    },
+    {
+      "url": "/url-encoder/",
+      "type": "tool",
+      "title": "URL Encoder / Decoder",
+      "icon": "link",
+      "desc": "Encode or decode URLs and query strings. Handles Unicode and percent-encoding.",
+      "hubs": [
+        "converters",
+        "developer"
+      ],
+      "hubTitle": {
+        "converters": "URL Encoder / Decoder",
+        "developer": "URL Encoder / Decoder"
+      },
+      "hubDesc": {
+        "converters": "Encode or decode URLs and query strings. Handles Unicode and percent-encoding correctly.",
+        "developer": "Encode or decode URLs and query strings. Handles Unicode and percent-encoding."
+      },
+      "tags": [
+        "encode",
+        "decode",
+        "url",
+        "web"
+      ],
+      "pin": [],
+      "block": []
+    },
+    {
+      "url": "/contrast-checker/",
+      "type": "tool",
+      "title": "Contrast Checker",
+      "icon": "contrast",
+      "desc": "Check WCAG 2.1 AA/AAA contrast ratios for accessible color combinations.",
+      "hubs": [
+        "color"
+      ],
+      "hubTitle": {
+        "color": "WCAG Contrast Checker"
+      },
+      "hubDesc": {
+        "color": "Check WCAG 2.1 AA/AAA contrast ratios for normal and large text. Accessible by default."
+      },
+      "tags": [
+        "color",
+        "a11y",
+        "wcag"
+      ],
+      "pin": [],
+      "block": []
+    },
+    {
+      "url": "/base64/",
+      "type": "tool",
+      "title": "Base64 Encoder / Decoder",
+      "icon": "binary",
+      "desc": "Encode or decode Base64 strings instantly. Supports text and file input.",
+      "hubs": [
+        "converters",
+        "developer"
+      ],
+      "hubTitle": {
+        "converters": "Base64 Encoder / Decoder",
+        "developer": "Base64 Encoder / Decoder"
+      },
+      "hubDesc": {
+        "converters": "Encode or decode Base64 strings instantly. Drag and drop files: everything stays local.",
+        "developer": "Encode or decode Base64 strings instantly. Supports text and file input."
+      },
+      "tags": [
+        "encode",
+        "decode",
+        "binary",
+        "text",
+        "base64",
+        "file"
+      ],
+      "pin": [],
+      "block": []
+    },
+    {
+      "url": "/hmac-generator/",
+      "type": "tool",
+      "title": "HMAC Generator",
+      "icon": "signature",
+      "desc": "Generate HMAC signatures (SHA-256/512) for webhook verification and API auth.",
+      "hubs": [
+        "security",
+        "developer"
+      ],
+      "hubTitle": {
+        "security": "HMAC Generator",
+        "developer": "HMAC Generator"
+      },
+      "hubDesc": {
+        "security": "Sign payloads with HMAC-SHA-256 / SHA-512 for webhook verification (Stripe, GitHub, Slack, Twilio) and JWT.",
+        "developer": "Sign payloads with HMAC-SHA-256 / SHA-512 (and MD5/SHA-1 for legacy). Stripe, GitHub, Slack, Twilio webhooks &amp; JWT."
+      },
+      "tags": [
+        "crypto",
+        "hash",
+        "security",
+        "api"
+      ],
+      "pin": [
+        "hash-generator"
+      ],
+      "block": []
+    },
+    {
+      "url": "/jwt-decoder/",
+      "type": "tool",
+      "title": "JWT Decoder",
+      "icon": "token",
+      "desc": "Decode and inspect JWT headers, payloads, and claims. Verify expiry locally.",
+      "hubs": [
+        "security",
+        "developer"
+      ],
+      "hubTitle": {
+        "security": "JWT Decoder",
+        "developer": "JWT Decoder"
+      },
+      "hubDesc": {
+        "security": "Decode a JSON Web Token, inspect claims and expiry, and verify HS256/RS256/ES256 signatures locally.",
+        "developer": "Decode JWT headers, payloads and claims, and verify the signature locally."
+      },
+      "tags": [
+        "token",
+        "base64",
+        "crypto",
+        "debug",
+        "auth"
+      ],
+      "pin": [
+        "/hmac-generator/",
+        "/base64/"
+      ],
+      "block": []
+    },
+    {
+      "url": "/cert-decoder/",
+      "type": "tool",
+      "title": "Certificate Decoder",
+      "icon": "certificate",
+      "desc": "Decode X.509 / PEM certificates: inspect issuer, validity, and SAN entries.",
+      "hubs": [
+        "security"
+      ],
+      "hubTitle": {
+        "security": "Certificate Decoder"
+      },
+      "hubDesc": {
+        "security": "Parse X.509 / PEM certificates: subject, issuer, SANs, validity, key algorithm and SHA-256 fingerprint."
+      },
+      "tags": [
+        "crypto",
+        "x509",
+        "security",
+        "decode"
+      ],
+      "pin": [],
+      "block": []
+    },
+    {
+      "url": "/totp-generator/",
+      "type": "tool",
+      "title": "TOTP Generator",
+      "icon": "timer",
+      "desc": "Generate time-based one-time passwords from a secret. RFC 6238 compatible.",
+      "hubs": [
+        "security"
+      ],
+      "hubTitle": {
+        "security": "TOTP Generator"
+      },
+      "hubDesc": {
+        "security": "Turn a Base32 secret into live two-factor codes (RFC 6238) with an otpauth QR for authenticator apps."
+      },
+      "tags": [
+        "security",
+        "otp",
+        "crypto",
+        "time",
+        "auth"
+      ],
+      "pin": [],
+      "block": []
+    },
+    {
+      "url": "/yaml-formatter/",
+      "type": "tool",
+      "title": "YAML Formatter & Validator",
+      "icon": "yaml",
+      "desc": "Format, validate, and minify YAML 1.1 and 1.2. Error line and column on invalid input.",
+      "hubs": [
+        "developer"
+      ],
+      "hubTitle": {
+        "developer": "YAML Formatter & Validator"
+      },
+      "hubDesc": {
+        "developer": "Format, validate, and minify YAML 1.1 and 1.2. Error line/column on invalid input. Runs locally."
+      },
+      "tags": [
+        "format",
+        "validate",
+        "yaml",
+        "data"
+      ],
+      "pin": [],
+      "block": []
+    }
+  ]
+}
